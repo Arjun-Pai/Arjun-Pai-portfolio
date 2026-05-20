@@ -8,14 +8,25 @@ import { Globe3D } from "@/components/Globe3D";
 import { GlitchText } from "@/components/GlitchText";
 import { TiltCard } from "@/components/TiltCard";
 import { CountUp } from "@/components/CountUp";
-import arjunHero from "@/assets/arjun-hero.jpg";
-import arjunPortrait from "@/assets/arjun-portrait.jpg";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BooksSection } from "@/components/BooksSection";
+import { TechStack } from "@/components/TechStack";
+import { PaioHero } from "@/components/PaioHero";
+import { MilestoneWheel } from "@/components/MilestoneWheel";
+import { AwardsMarquee } from "@/components/AwardsMarquee";
+import { SiteFooter } from "@/components/SiteFooter";
+import arjunHeadshot from "@/assets/arjun-headshot.png";
+import arjunLab from "@/assets/arjun-lab.png";
+import projectDrone from "@/assets/project-drone.png";
+import projectRobot from "@/assets/project-robot.png";
+import projectSeedcar from "@/assets/project-seedcar.png";
+import projectHand from "@/assets/project-hand.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Arjun Pai — Founder & CEO of PAIO International" },
-      { name: "description", content: "Portfolio of Arjun Pai: middle school tech prodigy, robotics engineer, software developer, and founder of PAIO International." },
+      { name: "description", content: "Portfolio of Arjun Pai: middle school tech prodigy, robotics engineer, software developer, author of the Life of Doom trilogy, and founder of PAIO International." },
       { property: "og:title", content: "Arjun Pai — Founder & CEO of PAIO International" },
       { property: "og:description", content: "Building the future. One product at a time." },
     ],
@@ -24,30 +35,16 @@ export const Route = createFileRoute("/")({
 });
 
 const projects = [
-  { name: "Delivery Drone", desc: "Autonomous aerial delivery prototype.", tech: "Arduino · ESP32 · Python" },
-  { name: "Delivery Robot", desc: "Ground-based last-mile delivery bot.", tech: "Raspberry Pi · Python · ROS" },
-  { name: "Seed Car", desc: "Self-planting agricultural rover.", tech: "Arduino · C++ · Sensors" },
-  { name: "Mesh Comms", desc: "Robots talking without WiFi/Bluetooth.", tech: "ESP32 · LoRa · C" },
-  { name: "AI Vision System", desc: "Real-time object detection pipeline.", tech: "Python · OpenCV · TensorFlow" },
-  { name: "AI Robotic Hand", desc: "Gesture-controlled prosthetic prototype.", tech: "Arduino · Python · Servos" },
-  { name: "Water Purifier Bottle", desc: "Portable UV+filtration system.", tech: "Hardware · Chemistry" },
-  { name: "School Hub", desc: "Unified learning + activity platform.", tech: "React · TypeScript · Node" },
-  { name: "Engineering Hub", desc: "Workspace for student engineers.", tech: "React · TSX · Firebase" },
-  { name: "Robotic Dog", desc: "Quadruped companion robot.", tech: "Raspberry Pi · Python · Servos" },
-];
-
-const skills = ["Python","JavaScript","TypeScript","HTML","C","C++","React","TSX","Arduino","Raspberry Pi","ESP32","AI/ML","Robotics"];
-
-const milestones = [
-  { t: "Founded PAIO International", d: "Launched a multi-vertical technology company." },
-  { t: "Organized CircuitBreak 2025", d: "Led an end-to-end student hackathon." },
-  { t: "Byte Battle", d: "Competed against top student coders." },
-  { t: "Presented at Synthax", d: "Showcased AI + robotics work to peers." },
-  { t: "School Innovation Marathon", d: "Built and shipped under deadline." },
-  { t: "Taekwondo Black Belt", d: "Years of discipline and focus." },
-  { t: "Piano Level 3A", d: "Classical training and performance." },
-  { t: "Boy Scouts Ranger", d: "Leadership and outdoor mastery." },
-  { t: "Certified: Python · HTML · AI", d: "Continuous structured learning." },
+  { name: "Delivery Drone", desc: "Autonomous aerial delivery prototype.", tech: "Arduino · ESP32 · Python", img: projectDrone },
+  { name: "Delivery Robot", desc: "Ground-based last-mile delivery bot.", tech: "Raspberry Pi · Python · ROS", img: projectRobot },
+  { name: "Seed Car", desc: "Self-planting agricultural rover.", tech: "Arduino · C++ · Sensors", img: projectSeedcar },
+  { name: "Mesh Comms", desc: "Robots talking without WiFi/Bluetooth.", tech: "ESP32 · LoRa · C", img: null },
+  { name: "AI Vision System", desc: "Real-time object detection pipeline.", tech: "Python · OpenCV · TensorFlow", img: null },
+  { name: "AI Robotic Hand", desc: "Gesture-controlled prosthetic prototype.", tech: "Arduino · Python · Servos", img: projectHand },
+  { name: "Water Purifier Bottle", desc: "Portable UV+filtration system.", tech: "Hardware · Chemistry", img: null },
+  { name: "School Hub", desc: "Unified learning + activity platform.", tech: "React · TypeScript · Node", img: null },
+  { name: "Engineering Hub", desc: "Workspace for student engineers.", tech: "React · TSX · Firebase", img: null },
+  { name: "Robotic Dog", desc: "Quadruped companion robot.", tech: "Raspberry Pi · Python · Servos", img: null },
 ];
 
 const stats = [
@@ -55,7 +52,7 @@ const stats = [
   { n: 1, s: "", l: "Hackathon Organized" },
   { n: 5, s: "+", l: "Languages Mastered" },
   { n: 1, s: "", l: "Company Founded" },
-  { n: 3, s: "", l: "Achievements" },
+  { n: 3, s: "", l: "Books Authored" },
 ];
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -81,6 +78,7 @@ function Index() {
       <Cursor />
       <Starfield />
       <DataRain />
+      <ScrollProgress />
 
       <main className="relative z-10">
         {/* NAV */}
@@ -90,6 +88,7 @@ function Index() {
             <a href="#about" className="hover:text-cyan-glow">About</a>
             <a href="#paio" className="hover:text-cyan-glow">PAIO</a>
             <a href="#projects" className="hover:text-cyan-glow">Work</a>
+            <a href="#books" className="hover:text-cyan-glow">Books</a>
             <a href="#skills" className="hover:text-cyan-glow">Stack</a>
             <a href="#contact" className="hover:text-cyan-glow">Contact</a>
           </div>
@@ -104,7 +103,7 @@ function Index() {
               </div>
               <GlitchText />
               <p className="mt-6 max-w-xl text-base text-white/70 md:text-lg">
-                CEO & Founder of PAIO International · Middle School · Robotics Engineer · Software Developer
+                CEO & Founder of PAIO International · Middle School · Robotics Engineer · Software Developer · Author
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a href="#projects" className="rounded-full border-2 px-7 py-3 font-display text-sm uppercase tracking-widest text-cyan-glow border-cyan glow-cyan transition hover:scale-105">View My Work</a>
@@ -116,8 +115,12 @@ function Index() {
                 <Globe3D />
               </div>
               <div className="animate-bob absolute -bottom-6 left-1/2 -translate-x-1/2">
-                <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-cyan glow-cyan md:h-36 md:w-36">
-                  <img src={arjunHero} alt="Arjun Pai" width={768} height={768} className="h-full w-full object-cover" />
+                <div className="relative h-32 w-32 overflow-hidden rounded-full border-2 border-cyan glow-cyan md:h-40 md:w-40">
+                  <img src={arjunHeadshot} alt="Arjun Pai" width={768} height={768} className="h-full w-full object-cover" />
+                </div>
+                {/* Author badge */}
+                <div className="absolute -right-2 -top-2 rotate-6 rounded-full border-2 border-[#FFB700] bg-[#080A12] px-3 py-1 font-display text-[10px] uppercase tracking-widest text-gold-glow" style={{ boxShadow: "0 0 24px rgba(255,183,0,0.7)" }}>
+                  ★ Author
                 </div>
               </div>
             </div>
@@ -135,7 +138,7 @@ function Index() {
           <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
             <Reveal>
               <div className="relative overflow-hidden rounded-2xl border border-cyan glow-cyan">
-                <img src={arjunPortrait} alt="Arjun in his lab" width={1024} height={1280} loading="lazy" className="h-full w-full object-cover" />
+                <img src={arjunLab} alt="Arjun working in his lab" width={1280} height={853} loading="lazy" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#080A12] via-transparent to-transparent" />
               </div>
             </Reveal>
@@ -148,8 +151,8 @@ function Index() {
                 <span className="text-gold-glow"> PAIO International</span>. From autonomous drones to AI vision systems,
                 Arjun blends <span className="text-gold-glow">robotics</span>, <span className="text-gold-glow">software engineering</span>,
                 and product thinking to ship real, working hardware. He organizes hackathons, mentors peers,
-                and is building the company he wants to lead — somewhere between <span className="text-gold-glow">Apple</span> and
-                <span className="text-gold-glow"> Tata</span>.
+                and authored the <span className="text-gold-glow">Life of Doom</span> trilogy — building the company he wants to lead,
+                somewhere between <span className="text-gold-glow">Apple</span> and <span className="text-gold-glow">Tata</span>.
               </p>
               <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-5">
                 {stats.map((s) => (
@@ -166,29 +169,7 @@ function Index() {
         </section>
 
         {/* PAIO */}
-        <section id="paio" className="relative overflow-hidden border-y border-white/5 bg-black/40 px-6 py-32 md:px-12">
-          <div className="grid-bg absolute inset-0 opacity-30" />
-          <div className="relative mx-auto max-w-5xl text-center">
-            <Reveal>
-              <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border-2 border-cyan glow-cyan">
-                <span className="font-display text-3xl font-bold text-cyan-glow">P</span>
-              </div>
-              <h2 className="mt-8 font-display text-5xl font-bold md:text-7xl">PAIO <span className="text-gold-glow">International</span></h2>
-              <p className="mt-4 font-display text-lg italic text-white/80">"Building the Future. One Product at a Time."</p>
-              <p className="mx-auto mt-6 max-w-2xl text-white/60">
-                Inspired by the design rigor of Apple and the breadth of Tata, PAIO is a multi-vertical
-                technology company designing consumer devices, robotics, and software for the next generation.
-              </p>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="spin-slow mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">
-                {["📱 Phone","🚁 Drone","📺 TV","🤖 Robot"].map((p) => (
-                  <div key={p} className="holo-panel rounded-xl p-8 text-center font-display text-xl text-white/80">{p}</div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <PaioHero />
 
         {/* PROJECTS */}
         <section id="projects" className="relative px-6 py-32 md:px-12">
@@ -200,9 +181,14 @@ function Index() {
             <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((p, i) => (
                 <Reveal key={p.name} delay={i * 0.04}>
-                  <TiltCard className="holo-panel group h-full rounded-2xl p-6">
-                    <div className="mb-4 flex h-32 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-[#0c1126] to-[#080A12]">
-                      <span className="font-display text-4xl text-cyan-glow opacity-50 group-hover:text-gold-glow">{String(i + 1).padStart(2, "0")}</span>
+                  <TiltCard className="holo-panel group h-full overflow-hidden rounded-2xl p-6">
+                    <div className="relative mb-4 flex h-40 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-gradient-to-br from-[#0c1126] to-[#080A12]">
+                      {p.img ? (
+                        <img src={p.img} alt={p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                      ) : (
+                        <span className="font-display text-5xl text-cyan-glow opacity-40 group-hover:text-gold-glow">{String(i + 1).padStart(2, "0")}</span>
+                      )}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080A12]/80 via-transparent to-transparent" />
                     </div>
                     <h3 className="font-display text-xl font-bold text-white group-hover:text-gold-glow">{p.name}</h3>
                     <p className="mt-2 text-sm text-white/60">{p.desc}</p>
@@ -212,8 +198,10 @@ function Index() {
               ))}
             </div>
           </div>
-          <div className="pointer-events-none absolute bottom-10 right-10 hidden text-[10rem] opacity-5 md:block">🤖</div>
         </section>
+
+        {/* BOOKS */}
+        <BooksSection />
 
         {/* SKILLS */}
         <section id="skills" className="relative px-6 py-32 md:px-12">
@@ -223,53 +211,27 @@ function Index() {
               <h2 className="mt-3 font-display text-5xl font-bold md:text-6xl">My <span className="text-gold-glow">Stack</span></h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-16 flex flex-wrap justify-center gap-4">
-                {skills.map((s, i) => (
-                  <div
-                    key={s}
-                    className="holo-panel relative font-display text-sm uppercase tracking-widest text-white/80"
-                    style={{
-                      clipPath: "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)",
-                      padding: "1.5rem 2.5rem",
-                      animation: `bob 4s ease-in-out ${i * 0.1}s infinite`,
-                    }}
-                  >
-                    {s}
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="mt-16 flex flex-wrap justify-center gap-8 text-5xl">
-                <span>🚁</span><span>🔌</span><span>🦾</span><span>💾</span><span>📡</span>
-              </div>
+              <TechStack />
             </Reveal>
           </div>
         </section>
 
-        {/* TIMELINE */}
+        {/* TIMELINE WHEEL */}
         <section id="milestones" className="relative px-6 py-32 md:px-12">
-          <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-5xl text-center">
             <Reveal>
               <p className="text-xs uppercase tracking-[0.3em] text-cyan-glow">// Timeline</p>
               <h2 className="mt-3 font-display text-5xl font-bold md:text-6xl">Mile<span className="text-gold-glow">stones</span></h2>
+              <p className="mx-auto mt-4 max-w-md text-sm text-white/60">A rotating constellation of moments — hover any node to learn more.</p>
             </Reveal>
-            <div className="relative mt-16">
-              <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-[#00F5FF] via-[#FFB700] to-transparent md:left-1/2" />
-              {milestones.map((m, i) => (
-                <Reveal key={m.t} delay={i * 0.03}>
-                  <div className={`relative mb-10 flex items-start gap-6 md:gap-10 ${i % 2 ? "md:flex-row-reverse md:text-right" : ""}`}>
-                    <div className="relative z-10 mt-2 h-3 w-3 shrink-0 rounded-full bg-[#00F5FF] animate-pulse-glow md:absolute md:left-1/2 md:-translate-x-1/2" />
-                    <div className="holo-panel ml-6 flex-1 rounded-xl p-5 md:ml-0 md:max-w-[42%]">
-                      <h3 className="font-display text-lg font-bold text-cyan-glow">{m.t}</h3>
-                      <p className="mt-1 text-sm text-white/60">{m.d}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal delay={0.1}>
+              <MilestoneWheel />
+            </Reveal>
           </div>
         </section>
+
+        {/* AWARDS */}
+        <AwardsMarquee />
 
         {/* CONTACT */}
         <section id="contact" className="relative border-t border-white/5 bg-black/40 px-6 py-32 md:px-12">
@@ -297,10 +259,7 @@ function Index() {
           </div>
         </section>
 
-        {/* FOOTER */}
-        <footer className="relative border-t border-cyan px-6 py-8 text-center text-xs text-white/50 md:px-12">
-          © 2025 Arjun Pai · PAIO International
-        </footer>
+        <SiteFooter />
       </main>
     </>
   );
