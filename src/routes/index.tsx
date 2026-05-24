@@ -30,12 +30,12 @@ export const Route = createFileRoute("/")({
 });
 
 const projects = [
-  { name: "Delivery Drone", desc: "Autonomous aerial delivery prototype.", tech: "Arduino · ESP32 · Python", img: projectDrone },
-  { name: "Delivery Robot", desc: "Ground-based last-mile delivery bot.", tech: "Raspberry Pi · Python · ROS", img: projectRobot },
-  { name: "Seed Car", desc: "Self-planting agricultural rover.", tech: "Arduino · C++ · Sensors", img: projectSeedcar },
+  { name: "Delivery Drone", desc: "Autonomous aerial delivery prototype.", tech: "Arduino · ESP32 · Python", img: null },
+  { name: "Delivery Robot", desc: "Ground-based last-mile delivery bot.", tech: "Raspberry Pi · Python · ROS", img: null },
+  { name: "Seed Car", desc: "Self-planting agricultural rover.", tech: "Arduino · C++ · Sensors", img: null },
   { name: "Mesh Comms", desc: "Robots talking without WiFi/Bluetooth.", tech: "ESP32 · LoRa · C", img: null },
   { name: "AI Vision System", desc: "Real-time object detection pipeline.", tech: "Python · OpenCV · TensorFlow", img: null },
-  { name: "AI Robotic Hand", desc: "Gesture-controlled prosthetic prototype.", tech: "Arduino · Python · Servos", img: projectHand },
+  { name: "AI Robotic Hand", desc: "Gesture-controlled prosthetic prototype.", tech: "Arduino · Python · Servos", img: null },
   { name: "Water Purifier Bottle", desc: "Portable UV+filtration system.", tech: "Hardware · Chemistry", img: null },
   { name: "School Hub", desc: "Unified learning + activity platform.", tech: "React · TypeScript · Node", img: null },
   { name: "Engineering Hub", desc: "Workspace for student engineers.", tech: "React · TSX · Firebase", img: null },
