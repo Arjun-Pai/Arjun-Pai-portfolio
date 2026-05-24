@@ -71,7 +71,6 @@ html, body { background-color: #080A12; }
     color: var(--color-foreground);
     font-family: var(--font-sans);
     overflow-x: hidden;
-    cursor: none;
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 }
