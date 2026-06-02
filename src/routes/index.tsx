@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { Boot } from "@/components/Boot";
 import { Cursor } from "@/components/Cursor";
-import { Starfield, DataRain } from "@/components/Starfield";
+import { Starfield } from "@/components/Starfield";
 import { Globe3D } from "@/components/Globe3D";
 import { GlitchText } from "@/components/GlitchText";
 import { TiltCard } from "@/components/TiltCard";
@@ -16,6 +17,7 @@ import { MilestoneWheel } from "@/components/MilestoneWheel";
 import { AwardsMarquee } from "@/components/AwardsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 import arjunHeadshot from "@/assets/arjun-headshot.png";
+import paioLogo from "@/assets/paio-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,25 +31,75 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+// Real (non-AI) photo placeholders from Unsplash.
+const UNS = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=70&sat=-100`;
+
 const projects = [
-  { name: "Delivery Drone", desc: "Autonomous aerial delivery prototype.", tech: "Arduino · ESP32 · Python", img: null },
-  { name: "Delivery Robot", desc: "Ground-based last-mile delivery bot.", tech: "Raspberry Pi · Python · ROS", img: null },
-  { name: "Seed Car", desc: "Self-planting agricultural rover.", tech: "Arduino · C++ · Sensors", img: null },
-  { name: "Mesh Comms", desc: "Robots talking without WiFi/Bluetooth.", tech: "ESP32 · LoRa · C", img: null },
-  { name: "AI Vision System", desc: "Real-time object detection pipeline.", tech: "Python · OpenCV · TensorFlow", img: null },
-  { name: "AI Robotic Hand", desc: "Gesture-controlled prosthetic prototype.", tech: "Arduino · Python · Servos", img: null },
-  { name: "Water Purifier Bottle", desc: "Portable UV+filtration system.", tech: "Hardware · Chemistry", img: null },
-  { name: "School Hub", desc: "Unified learning + activity platform.", tech: "React · TypeScript · Node", img: null },
-  { name: "Engineering Hub", desc: "Workspace for student engineers.", tech: "React · TSX · Firebase", img: null },
-  { name: "Robotic Dog", desc: "Quadruped companion robot.", tech: "Raspberry Pi · Python · Servos", img: null },
+  { name: "Delivery Drone",   desc: "Autonomous aerial delivery prototype.",   tech: "Arduino · ESP32 · Python",        img: UNS("1508614589041-895b88991e3e") },
+  { name: "Delivery Robot",   desc: "Ground-based last-mile delivery bot.",     tech: "Raspberry Pi · Python · ROS",     img: UNS("1581090700227-1e37b190418e") },
+  { name: "Seed Car",         desc: "Self-planting agricultural rover.",        tech: "Arduino · C++ · Sensors",         img: UNS("1592982537447-7440770cbfc9") },
+  { name: "Mesh Comms",       desc: "Robots talking without WiFi or Bluetooth.",tech: "ESP32 · LoRa · C",                img: UNS("1518770660439-4636190af475") },
+  { name: "AI Vision System", desc: "Real-time object detection pipeline.",     tech: "Python · OpenCV · TensorFlow",    img: UNS("1531297484001-80022131f5a1") },
+  { name: "AI Robotic Hand",  desc: "Gesture-controlled prosthetic prototype.", tech: "Arduino · Python · Servos",       img: UNS("1581092580497-e0d23cbdf1dc") },
+  { name: "Water Purifier Bottle", desc: "Portable UV and filtration system.",  tech: "Hardware · Chemistry",            img: UNS("1559757175-0eb30cd8c063") },
+  { name: "School Hub",       desc: "Unified learning + activity platform.",    tech: "React · TypeScript · Node",       img: UNS("1498050108023-c5249f4df085") },
+  { name: "Engineering Hub",  desc: "Workspace for student engineers.",         tech: "React · TSX · Firebase",          img: UNS("1542831371-29b0f74f9713") },
+  { name: "Robotic Dog",      desc: "Quadruped companion robot.",               tech: "Raspberry Pi · Python · Servos",  img: UNS("1546776230-bb86256870ce") },
+];
+
+const futureProjects = [
+  "Smart RC Car / FPV Rover",
+  "Automatic Smart Trash Can",
+  "Smart Fridge Inventory Tracker",
+  "DIY Programmable Robotic Arm",
+  "Autonomous Obstacle-Avoiding Rover",
+  "Self-Balancing Two-Wheeled Robot",
+  "DIY 3D Printer or CNC Carver",
+  "Automated Color-Sorting Conveyor Belt",
+  "Custom Car Infotainment System",
+  "Smart GPS Car Tracker & Anti-Theft",
+  "DIY Dash Cam",
+  "Digital Parking Sensor / Backup Assistant",
+  "Health-Tracking Smart Glasses",
+  "DIY 2D Plotter / Drawing Machine",
+  "E-Ink Desk Calendar & Task Dashboard",
+  "Smart 'Busy' / Meeting Indicator Light",
+  "Automated Attendance / Clock-In Station",
+  "Smart Glasses / Heads-Up Display",
+  "Smart Ring",
+  "GPS Tracker / Route Logger",
+  "Body-Worn Life-Logging Camera",
+  "Smart Home Hub",
+  "Retro Gaming Console",
+  "DIY Handheld Gaming Device",
+  "Custom Arcade / Virtual Pinball Cabinet",
+  "Sim Racing / Flight Sim Hardware",
+  "VR Haptic Gloves & Trackers",
+  "Smart Security / IP Camera",
+  "Wildlife Trail Camera",
+  "Time-Lapse Camera Rig",
+  "DIY Drone / UAV Flight Controller",
+  "DIY Action Camera",
+  "Bluetooth Speaker / Soundbar",
+  "Custom Digital Audio Player",
+  "DIY MIDI Controller / Synthesizer",
+  "Internet Radio Streamer",
+  "Voice Recorder / Smart Microphone",
+  "Network Audio Receiver",
+  "Smartphone",
+  "Feature Phone",
+  "Tablet",
+  "Walkie Talkies",
+  "Smartwatch",
+  "Bluetooth Comms Headset",
 ];
 
 const stats = [
   { n: 10, s: "+", l: "Projects Built" },
-  { n: 1, s: "", l: "Hackathon Organized" },
-  { n: 5, s: "+", l: "Languages Mastered" },
-  { n: 1, s: "", l: "Company Founded" },
-  { n: 3, s: "", l: "Books Authored" },
+  { n: 1,  s: "",  l: "Hackathon Organized" },
+  { n: 5,  s: "+", l: "Languages Mastered" },
+  { n: 1,  s: "",  l: "Company Founded" },
+  { n: 3,  s: "",  l: "Books Authored" },
 ];
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -72,101 +124,89 @@ function Index() {
       {!booted && <Boot onDone={() => setBooted(true)} />}
       <Cursor />
       <Starfield />
-      <DataRain />
       <ScrollProgress />
 
       <main className="relative z-10">
         {/* NAV */}
-        <nav className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-5 md:px-12">
-          <a href="#top" className="font-display text-lg font-bold tracking-widest text-cyan-glow">PAIO</a>
-          <div className="hidden gap-8 text-sm uppercase tracking-widest text-white/70 md:flex">
-            <a href="#about" className="hover:text-cyan-glow">About</a>
-            <a href="#paio" className="hover:text-cyan-glow">PAIO</a>
-            <a href="#projects" className="hover:text-cyan-glow">Work</a>
-            <a href="#books" className="hover:text-cyan-glow">Books</a>
-            <a href="#skills" className="hover:text-cyan-glow">Stack</a>
-            <a href="#contact" className="hover:text-cyan-glow">Contact</a>
+        <nav className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between border-b border-white/5 bg-black/60 px-6 py-4 backdrop-blur-md md:px-12">
+          <a href="#top" className="flex items-center gap-3">
+            <img src={paioLogo.url} alt="PAIO" width={36} height={36} className="h-8 w-8 object-contain" />
+            <span className="font-display text-sm font-bold tracking-[0.3em] text-white">PAIO</span>
+          </a>
+          <div className="hidden gap-9 text-[11px] uppercase tracking-[0.25em] text-white/65 md:flex">
+            <a href="#about" className="hover:text-white">About</a>
+            <a href="#paio" className="hover:text-white">PAIO</a>
+            <a href="#projects" className="hover:text-white">Work</a>
+            <a href="#future" className="hover:text-white">Future</a>
+            <a href="#books" className="hover:text-white">Books</a>
+            <a href="#skills" className="hover:text-white">Stack</a>
+            <a href="#contact" className="hover:text-white">Contact</a>
           </div>
         </nav>
 
         {/* HERO */}
-        <section id="top" className="relative flex min-h-screen items-center px-6 pt-24 md:px-12">
-          <div className="grid w-full items-center gap-10 md:grid-cols-2">
+        <section id="top" className="relative flex min-h-screen items-center px-6 pt-28 md:px-12">
+          <div className="grid w-full items-center gap-12 md:grid-cols-2">
             <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan px-3 py-1 text-xs uppercase tracking-widest text-cyan-glow">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-[#00F5FF]" /> Mission Online
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-1 text-[10px] uppercase tracking-[0.3em] text-white/80">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" /> Mission Online
               </div>
               <GlitchText />
-              <p className="mt-6 max-w-xl text-base text-white/70 md:text-lg">
-                CEO & Founder of PAIO International · Middle School · Robotics Engineer · Software Developer · Author
+              <p className="mt-8 max-w-xl text-base text-white/65 md:text-lg">
+                Founder & CEO of PAIO International · Middle School · Robotics Engineer · Software Developer · Author
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a href="#projects" className="rounded-full border-2 px-7 py-3 font-display text-sm uppercase tracking-widest text-cyan-glow border-cyan glow-cyan transition hover:scale-105">View My Work</a>
-                <a href="#paio" className="rounded-full border-2 px-7 py-3 font-display text-sm uppercase tracking-widest text-gold-glow border-gold glow-gold transition hover:scale-105">About PAIO</a>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a href="#projects" className="rounded-full border border-white px-8 py-3 font-display text-xs uppercase tracking-[0.25em] text-white transition hover:bg-white hover:text-black">View My Work</a>
+                <a href="#paio" className="rounded-full border border-white/30 px-8 py-3 font-display text-xs uppercase tracking-[0.25em] text-white/80 transition hover:border-white hover:text-white">About PAIO</a>
               </div>
             </div>
             <div className="relative h-[420px] md:h-[560px]">
               <div className="absolute inset-0">
                 <Globe3D />
               </div>
-              <div className="animate-bob absolute -bottom-6 left-1/2 -translate-x-1/2">
-                <div className="relative h-32 w-32 overflow-hidden rounded-full border-2 border-cyan glow-cyan md:h-40 md:w-40">
-                  <img src={arjunHeadshot} alt="Arjun Pai" width={768} height={768} className="h-full w-full object-cover" />
-                </div>
-                {/* Author badge */}
-                <div className="absolute -right-2 -top-2 rotate-6 rounded-full border-2 border-[#FFB700] bg-[#080A12] px-3 py-1 font-display text-[10px] uppercase tracking-widest text-gold-glow" style={{ boxShadow: "0 0 24px rgba(255,183,0,0.7)" }}>
-                  ★ Author
+              <div className="animate-bob absolute -bottom-4 left-1/2 -translate-x-1/2">
+                <div className="relative h-36 w-36 overflow-hidden rounded-full border border-white/40 md:h-44 md:w-44" style={{ boxShadow: "0 0 40px rgba(255,255,255,0.18)" }}>
+                  <img src={arjunHeadshot} alt="Arjun Pai" width={768} height={768} className="h-full w-full grayscale object-cover" />
                 </div>
               </div>
             </div>
-          </div>
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
-            <div className="mx-auto flex h-10 w-6 justify-center rounded-full border border-white/40 pt-2">
-              <div className="scroll-dot h-2 w-1 rounded-full bg-[#00F5FF]" />
-            </div>
-            <div className="mt-2 text-[10px] uppercase tracking-widest text-white/40">Scroll</div>
           </div>
         </section>
 
         {/* ABOUT */}
-        <section id="about" className="relative px-6 py-32 md:px-12">
-          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
+        <section id="about" className="relative px-6 py-40 md:px-12">
+          <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-2">
             <Reveal>
-              <div className="relative aspect-square overflow-hidden rounded-2xl border border-cyan glow-cyan">
+              <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/15">
                 <div className="grid-bg absolute inset-0 opacity-40" />
-                <div className="absolute -left-12 top-1/3 h-64 w-64 rounded-full bg-[#00F5FF]/25 blur-[80px]" />
-                <div className="absolute -right-12 bottom-1/4 h-64 w-64 rounded-full bg-[#FFB700]/20 blur-[80px]" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="font-display text-[10rem] font-extrabold leading-none text-cyan-glow opacity-30">A</div>
+                  <img src={paioLogo.url} alt="PAIO" width={320} height={320} className="h-2/3 w-2/3 object-contain opacity-90" style={{ filter: "drop-shadow(0 0 24px rgba(255,255,255,0.18))" }} />
                 </div>
-                <div className="absolute bottom-6 left-6 font-display text-xs uppercase tracking-[0.3em] text-white/60">
-                  // operator: arjun.pai
+                <div className="absolute bottom-6 left-6 font-display text-[10px] uppercase tracking-[0.3em] text-white/55">
+                  operator · arjun.pai
                 </div>
-                <div className="absolute right-6 top-6 text-[10px] uppercase tracking-[0.3em] text-cyan-glow">
-                  ● online
+                <div className="absolute right-6 top-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-white/80">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white" /> Online
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080A12] via-transparent to-transparent" />
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="text-xs uppercase tracking-[0.3em] text-cyan-glow">// About</p>
-              <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">A mind built for what's next.</h2>
-              <p className="mt-6 text-white/70">
-                Arjun Pai is a <span className="text-gold-glow">middle school</span> student and self-taught
-                <span className="text-gold-glow"> tech prodigy</span> — the Founder & CEO of
-                <span className="text-gold-glow"> PAIO International</span>. From autonomous drones to AI vision systems,
-                Arjun blends <span className="text-gold-glow">robotics</span>, <span className="text-gold-glow">software engineering</span>,
-                and product thinking to ship real, working hardware. He organizes hackathons, mentors peers,
-                and authored the <span className="text-gold-glow">Life of Doom</span> trilogy — building the company he wants to lead,
-                somewhere between <span className="text-gold-glow">Apple</span> and <span className="text-gold-glow">Tata</span>.
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">About</p>
+              <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">A mind built for what's next.</h2>
+              <p className="mt-8 text-white/70 leading-relaxed">
+                Arjun Pai is a middle school student and self-taught tech prodigy — the Founder & CEO of
+                PAIO International. From autonomous drones to AI vision systems, Arjun blends robotics,
+                software engineering, and product thinking to ship real, working hardware. He organizes
+                hackathons, mentors peers, and authored the Life of Doom trilogy — building the company
+                he wants to lead, somewhere between Apple and Tata.
               </p>
-              <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-5">
+              <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-5">
                 {stats.map((s) => (
                   <div key={s.l} className="holo-panel rounded-xl p-4 text-center">
-                    <div className="font-display text-2xl font-bold text-cyan-glow md:text-3xl">
+                    <div className="font-display text-2xl font-bold text-white md:text-3xl">
                       <CountUp to={s.n} suffix={s.s} />
                     </div>
-                    <div className="mt-1 text-[10px] uppercase tracking-widest text-white/60">{s.l}</div>
+                    <div className="mt-2 text-[10px] uppercase tracking-[0.25em] text-white/55">{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -178,28 +218,57 @@ function Index() {
         <PaioHero />
 
         {/* PROJECTS */}
-        <section id="projects" className="relative px-6 py-32 md:px-12">
+        <section id="projects" className="relative px-6 py-40 md:px-12">
           <div className="mx-auto max-w-6xl">
             <Reveal>
-              <p className="text-xs uppercase tracking-[0.3em] text-cyan-glow">// 010</p>
-              <h2 className="mt-3 font-display text-5xl font-bold md:text-6xl">What I've <span className="text-gold-glow">Built</span></h2>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">010</p>
+              <h2 className="mt-4 font-display text-5xl font-bold md:text-6xl">What I've Built</h2>
             </Reveal>
-            <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((p, i) => (
                 <Reveal key={p.name} delay={i * 0.04}>
-                  <TiltCard className="holo-panel group h-full overflow-hidden rounded-2xl p-6">
-                    <div className="relative mb-4 flex h-40 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-gradient-to-br from-[#0c1126] to-[#080A12]">
-                      {p.img ? (
-                        <img src={p.img} alt={p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                      ) : (
-                        <span className="font-display text-5xl text-cyan-glow opacity-40 group-hover:text-gold-glow">{String(i + 1).padStart(2, "0")}</span>
-                      )}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080A12]/80 via-transparent to-transparent" />
+                  <TiltCard className="holo-panel group h-full overflow-hidden rounded-2xl p-5">
+                    <div className="relative mb-5 h-44 overflow-hidden rounded-lg border border-white/10 bg-black">
+                      <img
+                        src={p.img}
+                        alt={p.name}
+                        loading="lazy"
+                        className="h-full w-full object-cover grayscale opacity-80 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                      <div className="absolute left-4 top-4 font-display text-[10px] uppercase tracking-[0.3em] text-white/70">
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
                     </div>
-                    <h3 className="font-display text-xl font-bold text-white group-hover:text-gold-glow">{p.name}</h3>
+                    <h3 className="font-display text-xl font-bold text-white">{p.name}</h3>
                     <p className="mt-2 text-sm text-white/60">{p.desc}</p>
-                    <p className="mt-3 text-[11px] uppercase tracking-widest text-cyan-glow">{p.tech}</p>
+                    <p className="mt-4 text-[10px] uppercase tracking-[0.25em] text-white/45">{p.tech}</p>
                   </TiltCard>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FUTURE PROPOSED PROJECTS */}
+        <section id="future" className="relative border-y border-white/10 bg-black/40 px-6 py-40 md:px-12">
+          <div className="mx-auto max-w-6xl">
+            <Reveal>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Roadmap</p>
+              <h2 className="mt-4 font-display text-5xl font-bold md:text-6xl">Future Proposed Projects</h2>
+              <p className="mt-6 max-w-2xl text-white/60">
+                A live backlog of hardware and software ideas being researched and prototyped next.
+              </p>
+            </Reveal>
+            <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {futureProjects.map((name, i) => (
+                <Reveal key={name} delay={Math.min(i, 8) * 0.02}>
+                  <div className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-all hover:-translate-y-0.5 hover:border-white/40">
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-white/15 font-display text-[11px] text-white/55 group-hover:text-white">
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+                    <div className="font-display text-sm text-white/85">{name}</div>
+                  </div>
                 </Reveal>
               ))}
             </div>
@@ -210,11 +279,14 @@ function Index() {
         <BooksSection />
 
         {/* SKILLS */}
-        <section id="skills" className="relative px-6 py-32 md:px-12">
-          <div className="mx-auto max-w-5xl text-center">
+        <section id="skills" className="relative px-6 py-40 md:px-12">
+          <div className="mx-auto max-w-6xl text-center">
             <Reveal>
-              <p className="text-xs uppercase tracking-[0.3em] text-cyan-glow">// Stack</p>
-              <h2 className="mt-3 font-display text-5xl font-bold md:text-6xl">My <span className="text-gold-glow">Stack</span></h2>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Stack</p>
+              <h2 className="mt-4 font-display text-5xl font-bold md:text-6xl">Certified & Proficient</h2>
+              <p className="mx-auto mt-6 max-w-xl text-white/60">
+                Hover any certified language to flip the card and see the actual certificate.
+              </p>
             </Reveal>
             <Reveal delay={0.1}>
               <TechStack />
@@ -223,12 +295,12 @@ function Index() {
         </section>
 
         {/* TIMELINE WHEEL */}
-        <section id="milestones" className="relative px-6 py-32 md:px-12">
+        <section id="milestones" className="relative px-6 py-40 md:px-12">
           <div className="mx-auto max-w-5xl text-center">
             <Reveal>
-              <p className="text-xs uppercase tracking-[0.3em] text-cyan-glow">// Timeline</p>
-              <h2 className="mt-3 font-display text-5xl font-bold md:text-6xl">Mile<span className="text-gold-glow">stones</span></h2>
-              <p className="mx-auto mt-4 max-w-md text-sm text-white/60">A rotating constellation of moments — hover any node to learn more.</p>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Timeline</p>
+              <h2 className="mt-4 font-display text-5xl font-bold md:text-6xl">Milestones</h2>
+              <p className="mx-auto mt-6 max-w-md text-sm text-white/55">A rotating constellation of moments — hover any node to learn more.</p>
             </Reveal>
             <Reveal delay={0.1}>
               <MilestoneWheel />
@@ -240,26 +312,46 @@ function Index() {
         <AwardsMarquee />
 
         {/* CONTACT */}
-        <section id="contact" className="relative border-t border-white/5 bg-black/40 px-6 py-32 md:px-12">
+        <section id="contact" className="relative border-t border-white/10 bg-black px-6 py-40 md:px-12">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-bold leading-tight md:text-6xl">
-                Let's <span className="text-cyan-glow">Build the Future</span> Together.
-              </h2>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Contact</p>
+              <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">Get in Touch</h2>
+              <p className="mx-auto mt-6 max-w-xl text-white/60">
+                Open to collaboration on robotics, AI, hardware and ambitious software projects.
+              </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <form onSubmit={(e) => e.preventDefault()} className="mt-12 grid gap-4 text-left">
-                <input className="holo-panel rounded-lg bg-transparent px-4 py-3 text-white outline-none focus:border-gold" placeholder="Name" />
-                <input className="holo-panel rounded-lg bg-transparent px-4 py-3 text-white outline-none focus:border-gold" placeholder="Email" type="email" />
-                <textarea rows={5} className="holo-panel rounded-lg bg-transparent px-4 py-3 text-white outline-none focus:border-gold" placeholder="Message" />
-                <button className="mt-2 rounded-full border-2 px-7 py-3 font-display text-sm uppercase tracking-widest text-cyan-glow border-cyan glow-cyan transition hover:scale-[1.02]">
-                  Transmit Signal →
-                </button>
-              </form>
-              <div className="mt-10 flex justify-center gap-6 text-sm uppercase tracking-widest text-white/60">
-                <a href="#" className="hover:text-cyan-glow">LinkedIn</a>
-                <a href="#" className="hover:text-cyan-glow">GitHub</a>
-                <a href="#" className="hover:text-cyan-glow">Email</a>
+              <div className="mt-14 flex flex-wrap items-center justify-center gap-5">
+                <a
+                  href="https://www.linkedin.com/in/arjun-prashanth-pai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="group grid h-16 w-16 place-items-center rounded-full border border-white/20 transition hover:border-white hover:bg-white"
+                >
+                  <Linkedin className="h-6 w-6 text-white group-hover:text-black" strokeWidth={1.5} />
+                </a>
+                <a
+                  href="https://github.com/Arjun-Pai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="group grid h-16 w-16 place-items-center rounded-full border border-white/20 transition hover:border-white hover:bg-white"
+                >
+                  <Github className="h-6 w-6 text-white group-hover:text-black" strokeWidth={1.5} />
+                </a>
+                <a
+                  href="mailto:supersonicarjun123@gmail.com"
+                  aria-label="Email"
+                  className="group grid h-16 w-16 place-items-center rounded-full border border-white/20 transition hover:border-white hover:bg-white"
+                >
+                  <Mail className="h-6 w-6 text-white group-hover:text-black" strokeWidth={1.5} />
+                </a>
+              </div>
+              <div className="mt-10 space-y-2 text-sm text-white/60">
+                <div>supersonicarjun123@gmail.com</div>
+                <div className="text-white/40">linkedin.com/in/arjun-prashanth-pai · github.com/Arjun-Pai</div>
               </div>
             </Reveal>
           </div>
