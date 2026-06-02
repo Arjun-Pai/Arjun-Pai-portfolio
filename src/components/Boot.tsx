@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import paioLogo from "@/assets/paio-logo.png.asset.json";
+import paioLogo from "@/assets/paio-logo.png";
 
 export function Boot({ onDone }: { onDone: () => void }) {
   const [progress, setProgress] = useState(0);
@@ -24,7 +24,7 @@ export function Boot({ onDone }: { onDone: () => void }) {
     <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black">
       <div className="flex flex-col items-center">
         <img
-          src={paioLogo.url}
+          src={paioLogo}
           alt="PAIO"
           width={160}
           height={160}

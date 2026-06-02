@@ -17,7 +17,7 @@ import { MilestoneWheel } from "@/components/MilestoneWheel";
 import { AwardsMarquee } from "@/components/AwardsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 import arjunHeadshot from "@/assets/arjun-headshot.png";
-import paioLogo from "@/assets/paio-logo.png.asset.json";
+import paioLogo from "@/assets/paio-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 });
 
 // Real (non-AI) photo placeholders from Unsplash.
-const UNS = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=70&sat=-100`;
+const UNS = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=70`;
 
 const projects = [
   { name: "Delivery Drone",   desc: "Autonomous aerial delivery prototype.",   tech: "Arduino · ESP32 · Python",        img: UNS("1508614589041-895b88991e3e") },
@@ -130,7 +130,7 @@ function Index() {
         {/* NAV */}
         <nav className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between border-b border-white/5 bg-black/60 px-6 py-4 backdrop-blur-md md:px-12">
           <a href="#top" className="flex items-center gap-3">
-            <img src={paioLogo.url} alt="PAIO" width={36} height={36} className="h-8 w-8 object-contain" />
+            <img src={paioLogo} alt="PAIO" width={36} height={36} className="h-8 w-8 object-contain" />
             <span className="font-display text-sm font-bold tracking-[0.3em] text-white">PAIO</span>
           </a>
           <div className="hidden gap-9 text-[11px] uppercase tracking-[0.25em] text-white/65 md:flex">
@@ -166,7 +166,7 @@ function Index() {
               </div>
               <div className="animate-bob absolute -bottom-4 left-1/2 -translate-x-1/2">
                 <div className="relative h-36 w-36 overflow-hidden rounded-full border border-white/40 md:h-44 md:w-44" style={{ boxShadow: "0 0 40px rgba(255,255,255,0.18)" }}>
-                  <img src={arjunHeadshot} alt="Arjun Pai" width={768} height={768} className="h-full w-full grayscale object-cover" />
+                  <img src={arjunHeadshot} alt="Arjun Pai" width={768} height={768} className="h-full w-full object-cover" />
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@ function Index() {
               <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/15">
                 <div className="grid-bg absolute inset-0 opacity-40" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <img src={paioLogo.url} alt="PAIO" width={320} height={320} className="h-2/3 w-2/3 object-contain opacity-90" style={{ filter: "drop-shadow(0 0 24px rgba(255,255,255,0.18))" }} />
+                  <img src={paioLogo} alt="PAIO" width={320} height={320} className="h-2/3 w-2/3 object-contain opacity-90" style={{ filter: "drop-shadow(0 0 24px rgba(255,255,255,0.18))" }} />
                 </div>
                 <div className="absolute bottom-6 left-6 font-display text-[10px] uppercase tracking-[0.3em] text-white/55">
                   operator · arjun.pai
@@ -233,7 +233,7 @@ function Index() {
                         src={p.img}
                         alt={p.name}
                         loading="lazy"
-                        className="h-full w-full object-cover grayscale opacity-80 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
+                        className="h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
                       />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                       <div className="absolute left-4 top-4 font-display text-[10px] uppercase tracking-[0.3em] text-white/70">

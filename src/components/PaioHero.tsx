@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Smartphone, Plane, Bot, Tv, Car } from "lucide-react";
-import paioLogo from "@/assets/paio-logo.png.asset.json";
+import paioLogo from "@/assets/paio-logo.png";
 
 const products = [
   { name: "Phone", Icon: Smartphone },
@@ -29,7 +29,7 @@ export function PaioHero() {
           className="mx-auto flex h-40 w-40 items-center justify-center"
         >
           <img
-            src={paioLogo.url}
+            src={paioLogo}
             alt="PAIO International logo"
             width={320}
             height={320}
