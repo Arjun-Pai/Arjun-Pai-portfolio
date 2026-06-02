@@ -37,7 +37,7 @@ const certified: Certified[] = [
   {
     name: "C++",
     cert: {
-      image: certHtml.url,
+      image: "",
       link: "#",
       label: "Self-taught proficiency",
     },
@@ -66,13 +66,23 @@ function FlipCard({ name, cert }: Certified) {
         </div>
         {/* Back */}
         <div className="flip-face flip-face-back flex flex-col rounded-2xl border border-white/30 bg-black p-3">
-          <div className="relative flex-1 overflow-hidden rounded-lg border border-white/10 bg-white">
-            <img
-              src={cert.image}
-              alt={`${name} certification`}
-              className="h-full w-full object-contain"
-            />
-          </div>
+          {isReal ? (
+            <div className="relative flex-1 overflow-hidden rounded-lg border border-white/10 bg-white">
+              <img
+                src={cert.image}
+                alt={`${name} certification`}
+                className="h-full w-full object-contain"
+              />
+            </div>
+          ) : (
+            <div className="relative flex flex-1 flex-col items-center justify-center rounded-lg border border-white/10 bg-white/[0.02] p-4 text-center">
+              <BadgeCheck className="h-8 w-8 text-white/70" strokeWidth={1.25} />
+              <div className="mt-4 font-display text-base font-bold text-white">Proficient</div>
+              <div className="mt-2 text-[11px] leading-relaxed text-white/60">
+                Self-taught working knowledge. No formal certificate yet.
+              </div>
+            </div>
+          )}
           <div className="mt-3 text-center">
             <div className="font-display text-xs font-bold text-white">{name}</div>
             {isReal ? (
