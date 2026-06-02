@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import paioLogo from "@/assets/paio-logo.png.asset.json";
 
 export function Boot({ onDone }: { onDone: () => void }) {
   const [progress, setProgress] = useState(0);
@@ -17,42 +18,34 @@ export function Boot({ onDone }: { onDone: () => void }) {
     return () => clearInterval(id);
   }, [onDone]);
 
-  // 8 dots rotating like Windows boot spinner
   const dots = Array.from({ length: 8 });
 
   return (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black">
       <div className="flex flex-col items-center">
-        {/* PAIO Logo mark */}
-        <div
-          className="mb-10 grid h-24 w-24 place-items-center rounded-2xl border-2 border-cyan"
-          style={{
-            background: "radial-gradient(circle at center, rgba(0,245,255,0.25), transparent 70%)",
-            boxShadow: "0 0 60px rgba(0,245,255,0.5)",
-          }}
-        >
-          <span className="font-display text-5xl font-extrabold text-cyan-glow">P</span>
-        </div>
+        <img
+          src={paioLogo.url}
+          alt="PAIO"
+          width={160}
+          height={160}
+          className="mb-12 h-32 w-32 object-contain"
+          style={{ filter: "drop-shadow(0 0 28px rgba(255,255,255,0.35))" }}
+        />
 
-        {/* Windows-style spinner: dots orbiting */}
-        <div
-          className="relative h-16 w-16"
-          style={{ animation: "spinSlow 1.6s linear infinite", animationDuration: "1.6s" }}
-        >
+        <div className="relative h-14 w-14">
           <div className="absolute inset-0 animate-[spinSlow_1.6s_linear_infinite]">
             {dots.map((_, i) => {
               const angle = (i / dots.length) * Math.PI * 2;
-              const r = 28;
+              const r = 24;
               const x = Math.cos(angle) * r;
               const y = Math.sin(angle) * r;
               return (
                 <span
                   key={i}
-                  className="absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-white"
+                  className="absolute left-1/2 top-1/2 h-1.5 w-1.5 rounded-full bg-white"
                   style={{
                     transform: `translate(${x}px, ${y}px)`,
                     opacity: 0.15 + (i / dots.length) * 0.85,
-                    boxShadow: "0 0 8px rgba(0,245,255,0.8)",
                   }}
                 />
               );
@@ -60,10 +53,10 @@ export function Boot({ onDone }: { onDone: () => void }) {
           </div>
         </div>
 
-        <div className="mt-10 font-display text-base tracking-[0.25em] text-white/90 md:text-lg">
+        <div className="mt-12 font-display text-base tracking-[0.35em] text-white/90 md:text-lg">
           PAIO INTERNATIONAL
         </div>
-        <div className="mt-2 text-xs uppercase tracking-[0.3em] text-white/40">
+        <div className="mt-3 text-[10px] uppercase tracking-[0.4em] text-white/40">
           Initializing… {Math.round(progress * 100)}%
         </div>
       </div>

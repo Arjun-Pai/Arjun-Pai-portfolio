@@ -23,9 +23,9 @@ export function Cursor() {
   return (
     <>
       <div ref={ringRef} className="pointer-events-none fixed left-0 top-0 z-[9999] hidden h-9 w-9 rounded-full border md:block"
-        style={{ borderColor: "#00F5FF", boxShadow: "0 0 18px rgba(0,245,255,0.6)" }} />
+        style={{ borderColor: "rgba(255,255,255,0.7)", boxShadow: "0 0 14px rgba(255,255,255,0.25)" }} />
       <div ref={dotRef} className="pointer-events-none fixed left-0 top-0 z-[9999] hidden h-2 w-2 rounded-full md:block"
-        style={{ background: "#00F5FF", boxShadow: "0 0 12px #00F5FF" }} />
+        style={{ background: "#fff", boxShadow: "0 0 10px rgba(255,255,255,0.6)" }} />
     </>
   );
 }

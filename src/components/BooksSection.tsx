@@ -1,42 +1,56 @@
 import { motion } from "framer-motion";
+import { Download, Clock } from "lucide-react";
+import book1 from "@/assets/life-of-doom-1.pdf.asset.json";
+import book2 from "@/assets/life-of-doom-2.pdf.asset.json";
 
 const books = [
-  { title: "Life of Doom", subtitle: "Book 1", blurb: "The origin. A young mind awakens to a world where shadows think back.", hue: "#00F5FF" },
-  { title: "Life of Doom", subtitle: "Book 2", blurb: "The rise. Allies become enemies as the code beneath reality unravels.", hue: "#FFB700" },
-  { title: "Life of Doom", subtitle: "Book 3", blurb: "The reckoning. Every circuit. Every choice. Every consequence.", hue: "#B26BFF" },
+  {
+    title: "Life of Doom",
+    subtitle: "Book 1",
+    blurb:
+      "An ordinary boy stumbles into a world where shadows think back and the rules of reality begin to bend. The origin story that ignites the trilogy — a quiet awakening, a first taste of power, and the dawning fear that someone, somewhere, is watching.",
+    download: book1.url,
+    available: true,
+  },
+  {
+    title: "Life of Doom",
+    subtitle: "Book 2",
+    blurb:
+      "Allies become strangers and strangers become threats as the code beneath the world unravels. Stakes climb, secrets surface, and the line between hero and machine starts to dissolve. The middle chapter that turns curiosity into consequence.",
+    download: book2.url,
+    available: true,
+  },
+  {
+    title: "Life of Doom",
+    subtitle: "Book 3",
+    blurb:
+      "The reckoning. Every circuit, every choice, every consequence converges in a final confrontation with what was always waiting in the dark. The closing chapter of the Life of Doom trilogy — releasing October 31.",
+    download: null,
+    available: false,
+  },
 ];
 
 export function BooksSection() {
   return (
-    <section id="books" className="relative overflow-hidden px-6 py-32 md:px-12">
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), radial-gradient(rgba(255,255,255,0.3) 1px, transparent 1px)",
-          backgroundSize: "3px 3px, 7px 7px",
-          backgroundPosition: "0 0, 1px 2px",
-        }}
-      />
+    <section id="books" className="relative overflow-hidden px-6 py-40 md:px-12">
       <div className="relative mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
           className="text-center"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-glow">// Author</p>
-          <h2 className="mt-3 font-display text-5xl font-bold md:text-6xl">
-            Beyond the Circuit — <span className="text-gold-glow">Life of Doom</span> Trilogy
+          <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Author</p>
+          <h2 className="mt-4 font-display text-5xl font-bold md:text-6xl">
+            Beyond the Circuit — Life of Doom Trilogy
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl font-display italic text-white/70">
+          <p className="mx-auto mt-6 max-w-2xl font-display italic text-white/65">
             "Because great minds don't just build — they tell stories."
           </p>
         </motion.div>
 
-        <div className="mt-20 grid gap-12 md:grid-cols-3 md:gap-8" style={{ perspective: "1400px" }}>
+        <div className="mt-24 grid gap-10 md:grid-cols-3" style={{ perspective: "1400px" }}>
           {books.map((b, i) => (
             <motion.div
               key={i}
@@ -44,51 +58,47 @@ export function BooksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.12 }}
-              className="group mx-auto h-[380px] w-[260px] [transform-style:preserve-3d]"
+              className="flip-card mx-auto h-[440px] w-[280px]"
             >
-              <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+              <div className="flip-card-inner">
                 {/* Front */}
                 <div
-                  className="absolute inset-0 flex flex-col justify-between rounded-md p-6 [backface-visibility:hidden]"
-                  style={{
-                    background: `linear-gradient(160deg, #0c1126, #050610)`,
-                    border: `1px solid ${b.hue}55`,
-                    boxShadow: `0 30px 60px -20px ${b.hue}55, inset 0 0 40px ${b.hue}22`,
-                  }}
+                  className="flip-face flex flex-col justify-between rounded-lg border border-white/20 bg-gradient-to-b from-[#0a0a0a] to-black p-7"
+                  style={{ boxShadow: "0 30px 60px -20px rgba(255,255,255,0.08)" }}
                 >
                   <div>
-                    <div className="text-[10px] uppercase tracking-[0.3em]" style={{ color: b.hue }}>
+                    <div className="text-[10px] uppercase tracking-[0.35em] text-white/45">
                       {b.subtitle}
                     </div>
-                    <h3 className="mt-3 font-display text-3xl font-extrabold leading-tight text-white">
+                    <h3 className="mt-4 font-display text-3xl font-extrabold leading-tight text-white">
                       {b.title}
                     </h3>
                   </div>
-                  <div
-                    className="mx-auto h-32 w-32 rounded-full"
-                    style={{
-                      background: `radial-gradient(circle, ${b.hue}99, transparent 70%)`,
-                      filter: "blur(2px)",
-                    }}
-                  />
+                  <div className="mx-auto h-32 w-32 rounded-full border border-white/15" />
                   <div className="text-[10px] uppercase tracking-[0.3em] text-white/40">Arjun Pai</div>
                 </div>
                 {/* Back */}
                 <div
-                  className="absolute inset-0 flex flex-col justify-center rounded-md p-6 text-center [backface-visibility:hidden] [transform:rotateY(180deg)]"
-                  style={{
-                    background: `linear-gradient(200deg, #0c1126, #050610)`,
-                    border: `1px solid ${b.hue}77`,
-                    boxShadow: `0 30px 60px -20px ${b.hue}77, inset 0 0 50px ${b.hue}33`,
-                  }}
+                  className="flip-face flip-face-back flex flex-col justify-between rounded-lg border border-white/30 bg-gradient-to-b from-[#0a0a0a] to-black p-7 text-center"
+                  style={{ boxShadow: "0 30px 60px -20px rgba(255,255,255,0.12)" }}
                 >
-                  <div className="text-[10px] uppercase tracking-[0.3em]" style={{ color: b.hue }}>
+                  <div className="text-[10px] uppercase tracking-[0.35em] text-white/50">
                     Synopsis
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-white/80">{b.blurb}</p>
-                  <div className="mt-6 text-[10px] uppercase tracking-[0.3em] text-white/40">
-                    {b.subtitle}
-                  </div>
+                  <p className="text-[13px] leading-relaxed text-white/80">{b.blurb}</p>
+                  {b.available && b.download ? (
+                    <a
+                      href={b.download}
+                      download
+                      className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/40 px-5 py-2 text-[11px] uppercase tracking-[0.25em] text-white transition hover:border-white hover:bg-white hover:text-black"
+                    >
+                      <Download size={14} /> Download PDF
+                    </a>
+                  ) : (
+                    <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2 text-[11px] uppercase tracking-[0.25em] text-white/60">
+                      <Clock size={14} /> Releasing Oct 31
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
